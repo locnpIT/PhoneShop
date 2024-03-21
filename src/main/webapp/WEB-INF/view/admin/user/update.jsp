@@ -34,12 +34,12 @@
 
                     <div class="mb-3">
                         <label class="form-label">Email address</label>
-                        <form:input type="email" class="form-control" path="email" disabled="true"/>
+                        <form:input type="email" class="form-control" path="email" disabled="false"/>
                         <!-- lưu ý là cái path phải trùng với attribute trong class -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Full Name</label>
-                        <form:input type="text" class="form-control" path="fullName" />
+                        <form:input type="text" class="form-control" path="fullName"/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Address</label>

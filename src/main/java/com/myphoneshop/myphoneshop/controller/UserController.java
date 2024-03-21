@@ -29,11 +29,9 @@ public class UserController {
 
     @RequestMapping("/")
     public String getHomePage(Model model) {
-        // String test = this.userService.handleHello();
         List<User> arrUsres = this.userService.getAllUserByEmail("buithikimngan2705@gmai.com");
         System.out.println(arrUsres);
         model.addAttribute("loc", "test");
-
         return "hello";
     }
 
