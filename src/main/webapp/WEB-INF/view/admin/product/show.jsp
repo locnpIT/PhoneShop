@@ -1,7 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Tạo form với jstl -->
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Nguyễn Phước Lộc - Dự án laptopshop" />
     <meta name="author" content="Nguyễn Phước Lộc" />
-    <title>Delete User</title>
+    <title>Dashboard - Nguyễn Phước Lộc</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -24,41 +22,12 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Delete user</h1>
+                    <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadscrum-item"><a href="/admin">Dashboard</a></li> 
-                        <li class="breadcrumb-item active">Delete user</li>
+                        <li class="breadcrumb-item active">Products</li>
                     </ol>
-                    <div class="container mt-5">
-                        <div class="row">
-                            <div class="col-12 mx-auto">
-                                <div class="d-flex justify-content-between">
-                                    <h3>Delete user with id = ${id}</h3>
-                                </div>
-                                <hr>
-                
-                                <div class="alert alert-danger" role="alert">
-                                    Are you sure to delete this user?
-                                </div>
-                                
-                                <form:form method="post" action="/admin/user/delete" modelAttribute="newUser">
-                                    <div class="mb-3" style="display: none;">
-                                        <label class="form-label">Id</label>
-                                        <form:input value="${id}" type="text" class="form-control" path="id" />
-                                        <!-- lưu ý là cái path phải trùng với attribute trong class -->
-                                    </div>
-                
-                                    <button type="submit" class="btn btn-success mt-2" >
-                                        Confirm
-                                    </button>
-                                    <a href="/admin/user" class="btn btn-danger mt-2">Cancel</a>
-                                </form:form>
-                
-                            </div>
-                
-                        </div>
-                
-                    </div>
+                    <div>Table products</div>
                 </div>
             </main>
             <jsp:include page="../layout/footer.jsp"/>
