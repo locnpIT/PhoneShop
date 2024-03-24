@@ -17,8 +17,8 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String email;
     private String description;
+    private String name;
 
     // One role -> to many -> user
     @OneToMany(mappedBy = "role")
@@ -32,12 +32,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return this.name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -50,7 +50,7 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role [id=" + id + ", email=" + email + ", description=" + description + "]";
+        return "Role [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
 
 }
