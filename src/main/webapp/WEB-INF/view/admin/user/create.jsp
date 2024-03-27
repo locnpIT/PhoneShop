@@ -45,7 +45,9 @@
                             <div class="col-md-6 col-12 mx-auto">
                                 <form:form method="post" 
                                 action="/admin/user/create" 
-                                modelAttribute="newUser" class="row">
+                                modelAttribute="newUser" class="row"
+                                enctype="multipart/form-data"
+                                >
 
                                     <div class="mb-3 col-12 col-md-6">
                                         <label class="form-label">Email address:</label>
@@ -70,15 +72,17 @@
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
                                         <label class="form-label">Role:</label>
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option value="ADMIN">ADMIN</option>
-                                            <option value="USER">USER</option>
-                                          </select>
+                                        <form:select class="form-select" path="role.name">
+                                            <form:option value="ADMIN">ADMIN</form:option>
+                                            <form:option value="USER">USER</form:option>
+                                        </form:select>
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
                                         <label for="avatarFile" class="form-label">Avatar:</label>
                                         <input class="form-control" type="file" id="avatarFile"
-                                            accept=".png, .jpg, .jpeg">
+                                            accept=".png, .jpg, .jpeg" 
+                                            name="phuoclocFile"
+                                        />
                                     </div>
                                     <div class="mb-3 col-12">
                                         <img style="max-height: 250px; display: none;" alt="avatar preview"

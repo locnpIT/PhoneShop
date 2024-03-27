@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.myphoneshop.myphoneshop.domain.User;
-import com.myphoneshop.myphoneshop.repository.UserRepository;
+import com.myphoneshop.myphoneshop.service.UploadService;
 import com.myphoneshop.myphoneshop.service.UserService;
 
 @Controller
 public class UserController {
 
     private final UserService userService;
+    private final UploadService uploadService;
 
-    private final UserRepository userRepository;
-
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService, UploadService uploadService) {
         this.userService = userService;
-        this.userRepository = userRepository;
+        this.uploadService = uploadService;
+
     }
 
     @RequestMapping("/")
@@ -50,15 +51,19 @@ public class UserController {
         return "admin/user/detail";
     }
 
-    @RequestMapping("/admin/user/create")
+    @GetMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
-    @RequestMapping(value = "/admin/user/create", method = RequestMethod.POST)
-    public String createUserPage(Model model, @ModelAttribute("newUser") User phuocloc) {
-        this.userService.handleSubmit(phuocloc);
+    @PostMapping(value = "/admin/user/create")
+    public String createUserPage(Model model,
+            @ModelAttribute("newUser") User phuocloc,
+            @RequestParam("phuoclocFile") MultipartFile file) {
+
+        this.uploadService.handleUploadFile(file, "avatar");
+        // this.userService.handleSubmit(phuocloc);
         return "redirect:/admin/user";
     }
 
