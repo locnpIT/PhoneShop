@@ -2,6 +2,8 @@ package com.myphoneshop.myphoneshop.controller.admin;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +23,13 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, UploadService uploadService) {
+    public UserController(UserService userService, UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
-
+        this.passwordEncoder = passwordEncoder;
     }
 
     @RequestMapping("/")
@@ -62,9 +66,14 @@ public class UserController {
             @ModelAttribute("newUser") User phuocloc,
             @RequestParam("phuoclocFile") MultipartFile file) {
 
-        this.uploadService.handleUploadFile(file, "avatar");
-        // this.userService.handleSubmit(phuocloc);
+        String avatar = this.uploadService.handleUploadFile(file, "avatar");
+        String hashPassword = this.passwordEncoder.encode(phuocloc.getPassword());
+        phuocloc.setAvatar(avatar);
+        phuocloc.setPassword(hashPassword);
+        phuocloc.setRole(this.userService.getRoleByName(phuocloc.getRole().getName()));
+        this.userService.handleSubmit(phuocloc);
         return "redirect:/admin/user";
+
     }
 
     @RequestMapping("/admin/user/update/{id}")
