@@ -30,9 +30,10 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
-                        <h4 class="text-light mb-3">Why People Like us!</h4>
-                        <p class="mb-4">typesetting, remaining essentially unchanged. It was 
-                            popularised in the 1960s with the like Aldus PageMaker including of Lorem Ipsum.</p>
+                        <h4 class="text-light mb-3">Tại sao nên mua tại cửa hàng chúng tôi?</h4>
+                        <p class="mb-4">Chúng tôi có các cửa hàng trên khắp 63 tỉnh thành, quận huyện. Với chính sách bảo hành
+                            và chăm sóc khách hàng, chúng tôi đảm bảo bạn sẽ hài lòng với dịch vụ của chúng tôi.
+                        </p>
                         <a href="" class="btn border-secondary py-2 px-4 rounded-pill text-primary">Read More</a>
                     </div>
                 </div>
@@ -61,10 +62,10 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
                         <h4 class="text-light mb-3">Contact</h4>
-                        <p>Address: 1429 Netus Rd, NY 48247</p>
-                        <p>Email: Example@gmail.com</p>
-                        <p>Phone: +0123 4567 8910</p>
-                        <p>Payment Accepted</p>
+                        <p>Địa chỉ: Tam Mỹ Đông, Núi Thành, Quảng Nam</p>
+                        <p>Email: npl2004qn@gmail.com</p>
+                        <p>Điện thoại: 033 8361 709</p>
+                        <p>Các hình thức thanh toán</p>
                         <img src="/client/img/payment.png" class="img-fluid" alt="">
                     </div>
                 </div>

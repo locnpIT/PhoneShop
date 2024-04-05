@@ -35,7 +35,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Create new userr</h1>
+                    <h1 class="mt-4">Create new user</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                         <li class="breadcrumb-item active">Create new user</li>
@@ -50,21 +50,39 @@
                                 >
 
                                     <div class="mb-3 col-12 col-md-6">
-                                        <label class="form-label">Email address:</label>
-                                        <form:input type="email" class="form-control" path="email" />
+                                        <c:set var="errorEmail">  
+                                            <form:errors path="email" cssClass="invalid-feedback"/>
+                                        </c:set>
                                         <!-- lưu ý là cái path phải trùng với attribute trong class -->
+                                        <label class="form-label">Email address:</label>
+                                        <form:input type="email" 
+                                        class="form-control ${not empty errorEmail ? 'is-invalid' : ''}" path="email" />
+                                        <!-- Tag này dùng để show lỗi trong validation -->
+                                        ${errorEmail}
+
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
+                                        <c:set var="errorPassword">  
+                                            <form:errors path="password" cssClass="invalid-feedback"/>
+                                        </c:set>
                                         <label class="form-label">Password:</label>
-                                        <form:input type="password" class="form-control" path="password" />
+                                        <form:input type="password" 
+                                        class="form-control ${not empty errorPassword ? 'is-invalid' : ''}" path="password" />
+                                        ${errorPassword}
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
                                         <label class="form-label">Phone:</label>
                                         <form:input type="text" class="form-control" path="phone" />
                                     </div>
                                     <div class="mb-3 col-12 col-md-6">
+                                        <c:set var="errorFullname">  
+                                            <form:errors path="fullName" cssClass="invalid-feedback"/>
+                                        </c:set>
                                         <label class="form-label">Full Name:</label>
-                                        <form:input type="text" class="form-control" path="fullName" />
+                                        <form:input type="text" 
+                                        class="form-control ${not empty errorFullname ? 'is-invalid' : ''}" path="fullName" />
+                                        ${errorFullname}
+
                                     </div>
                                     <div class="mb-3 col-12">
                                         <label class="form-label">Address:</label>

@@ -6,6 +6,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.myphoneshop.myphoneshop.domain.User;
 import com.myphoneshop.myphoneshop.service.UploadService;
 import com.myphoneshop.myphoneshop.service.UserService;
+import com.mysql.cj.result.Field;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -30,14 +35,6 @@ public class UserController {
         this.userService = userService;
         this.uploadService = uploadService;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        List<User> arrUsres = this.userService.getAllUserByEmail("buithikimngan2705@gmai.com");
-        System.out.println(arrUsres);
-        model.addAttribute("loc", "test");
-        return "hello";
     }
 
     @RequestMapping("/admin/user")
@@ -63,16 +60,27 @@ public class UserController {
 
     @PostMapping(value = "/admin/user/create")
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") User phuocloc,
+            @ModelAttribute("newUser") @Valid User phuocloc,
+            BindingResult newUserBindingResult,
             @RequestParam("phuoclocFile") MultipartFile file) {
-
-        String avatar = this.uploadService.handleUploadFile(file, "avatar");
-        String hashPassword = this.passwordEncoder.encode(phuocloc.getPassword());
-        phuocloc.setAvatar(avatar);
-        phuocloc.setPassword(hashPassword);
-        phuocloc.setRole(this.userService.getRoleByName(phuocloc.getRole().getName()));
-        this.userService.handleSubmit(phuocloc);
-        return "redirect:/admin/user";
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+        // Validate
+        if (newUserBindingResult.hasErrors()) {
+            return "/admin/user/create";
+        }
+        // End validate
+        else {
+            String avatar = this.uploadService.handleUploadFile(file, "avatar");
+            String hashPassword = this.passwordEncoder.encode(phuocloc.getPassword());
+            phuocloc.setAvatar(avatar);
+            phuocloc.setPassword(hashPassword);
+            phuocloc.setRole(this.userService.getRoleByName(phuocloc.getRole().getName()));
+            this.userService.handleSubmit(phuocloc);
+            return "redirect:/admin/user";
+        }
 
     }
 

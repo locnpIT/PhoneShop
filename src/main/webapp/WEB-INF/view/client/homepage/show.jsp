@@ -69,33 +69,13 @@
             <div class="tab-class text-center">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start">
-                        <h1>Our Organic Products</h1>
+                        <h1>Sản phẩm nổi bật</h1>
                     </div>
                     <div class="col-lg-8 text-end">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
                             <li class="nav-item">
                                 <a class="d-flex m-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
                                     <span class="text-dark" style="width: 130px;">All Products</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex py-2 m-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                    <span class="text-dark" style="width: 130px;">Vegetables</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                    <span class="text-dark" style="width: 130px;">Fruits</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                    <span class="text-dark" style="width: 130px;">Bread</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                    <span class="text-dark" style="width: 130px;">Meat</span>
                                 </a>
                             </li>
                         </ul>
@@ -141,7 +121,7 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="/client/img/fruite-item-2.jpg" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/client/img/fruite-item-2.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -205,7 +185,7 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="/client/img/fruite-item-2.jpg" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/client/img/fruite-item-2.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -261,7 +241,7 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="/client/img/fruite-item-2.jpg" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/client/img/fruite-item-2.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -285,7 +265,7 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="/client/img/fruite-item-1.jpg" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/client/img/fruite-item-1.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -381,7 +361,7 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="/client/img/fruite-item-2.jpg" class="img-fluid w-100 rounded-top" alt="">
+                                                <img src="/client/img/fruite-item-2.png" class="img-fluid w-100 rounded-top" alt="">
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">Fruits</div>
                                             <div class="p-4 border border-secondary border-top-0 rounded-bottom">
@@ -429,13 +409,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                    <span class="text-light"><a href="/"><i class="fas fa-copyright text-light me-2"></i>Laptopshop</a>, All right reserved.</span>
                 </div>
                 <div class="col-md-6 my-auto text-center text-md-end text-white">
                     <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
                     <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
                     <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a class="border-bottom" href="https://themewagon.com">ThemeWagon</a>
+                    Designed By <a class="border-bottom" href="https://www.facebook.com/PhuocLoc240">NguyenPhuocLoc</a>
                 </div>
             </div>
         </div>
