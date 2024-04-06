@@ -31,43 +31,33 @@
                         <div class="row">
                             <div class="col-12 mx-auto">
                                 <div class="d-flex justify-content-between">
-                                    <h3>Table Products</h3>
-                                    <a href="/admin/product/create" class="btn btn-primary">Create a product</a>
+                                    <h3>Product details with id = ${id}</h3>
                                 </div>
                                 <hr>
-                
-                                <table class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Factory</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="product" items="${products}">
-                                            <tr>
-                                                <td>${product.id}</td>
-                                                <td>${product.name}</td>
-                                                <td>${product.price}</td>
-                                                <td>${product.factory}</td>
-                                                <td>
-                                                    <a
-                                                    href="/admin/product/${product.id}" 
-                                                    class="btn btn-success">View</a>
-                                                    <a href="/admin/product/update/${product.id}" class="btn btn-warning mx-2">Update</a>
-                                                    <a href="/admin/product/delete/${product.id}" class="btn btn-danger">Delete</button>
-                    
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+                                
+                                <div class="card" style="width: 60%;">
+                                    <img class="card-img-top" src="/images/product/${product.image}" alt="Card image cap">
+                                    
+                                    <div class="card-header">
+                                        Product information
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Id: ${product.id}</li>
+                                        <li class="list-group-item">Name: ${product.name}</li>
+                                        <li class="list-group-item">Price: ${product.price}</li>
+                                    </ul>
+                                    
+                                </div>
+                                
+                                <a href="/admin/product" class="btn btn-primary mt-2" >
+                                    Back
+                                </a>
+    
                         </div>
+    
                     </div>
+    
+                </div>
                 </div>
             </main>
             <jsp:include page="../layout/footer.jsp"/>

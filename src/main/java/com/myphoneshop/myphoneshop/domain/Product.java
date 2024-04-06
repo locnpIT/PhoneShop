@@ -2,12 +2,17 @@ package com.myphoneshop.myphoneshop.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
@@ -17,12 +22,27 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "Name cannot be null")
     private String name;
+
+    @NotNull
+    @DecimalMin(value = "0", inclusive = false, message = "Price is larger than 0")
     private double price;
+
     private String image;
+
+    @NotNull
+    @NotBlank(message = "Detail description cannot be null")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
+    @NotNull
+    @NotBlank(message = "Short description cannot be null")
     private String shortDesc;
+
+    @NotNull
+    @Min(value = 1, message = "Quantity is larger or equal 1")
     private long quantity;
+
     private long sold;
     private String factory;
     private String target;
