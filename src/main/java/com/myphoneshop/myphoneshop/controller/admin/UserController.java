@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.myphoneshop.myphoneshop.domain.User;
 import com.myphoneshop.myphoneshop.service.UploadService;
 import com.myphoneshop.myphoneshop.service.UserService;
-import com.mysql.cj.result.Field;
+
 
 import jakarta.validation.Valid;
 

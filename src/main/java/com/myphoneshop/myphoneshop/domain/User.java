@@ -2,6 +2,8 @@ package com.myphoneshop.myphoneshop.domain;
 
 import java.util.List;
 
+import com.myphoneshop.myphoneshop.service.validator.StrongPassword;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +33,7 @@ public class User {
     // dùng cho số
     @NotNull(message = "Password cannot be null")
     @Size(min = 2, max = 255, message = "Password is at least 2 characters")
+    @StrongPassword(message = "Mật khẩu phải có 8 kí tự")
     private String password;
 
     @NotNull
