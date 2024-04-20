@@ -8,7 +8,6 @@ import com.myphoneshop.myphoneshop.service.UserService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-
 @Service
 public class RegisterValidator implements ConstraintValidator<RegisterChecked, registerDTO> {
 
@@ -44,4 +43,3 @@ public class RegisterValidator implements ConstraintValidator<RegisterChecked, r
         return valid;
     }
 }
-
