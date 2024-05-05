@@ -56,39 +56,40 @@ public class SecurityConfiguration {
         SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
         // optionally customize
         rememberMeServices.setAlwaysRemember(true);
+
         return rememberMeServices;
     }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        // v6. lamda
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
                                 DispatcherType.INCLUDE)
                         .permitAll()
 
-                        .requestMatchers("/", "/login", "/register", "/client/**", "/product/**", "/css/**", "/js/**",
-                                "/images/**")
+                        .requestMatchers("/", "/login", "/product/**",
+                                "/client/**", "/css/**", "/js/**", "/images/**")
                         .permitAll()
 
-                        .requestMatchers("/admin/**")
-                        .hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated())
 
-                .sessionManagement(sessionManagement -> sessionManagement
+                .sessionManagement((sessionManagement) -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                         .invalidSessionUrl("/logout?expired")
-                        .maximumSessions(1) // một tài khoản đăng nhập trên 1 thiết bị cùng lúc
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(false))
 
-                        .maxSessionsPreventsLogin(false))// nếu người sau vào thì đá người trước ra
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
-                .rememberMe((rememberMe) -> rememberMe
-                        .rememberMeServices(rememberMeServices()))
 
+                .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
+                        .successHandler(customSuccessHandler())
                         .permitAll())
                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
 
