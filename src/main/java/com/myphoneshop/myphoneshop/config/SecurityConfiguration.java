@@ -2,8 +2,10 @@ package com.myphoneshop.myphoneshop.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -51,6 +53,19 @@ public class SecurityConfiguration {
         return new CustomSuccessHandler();
     }
 
+    // @Bean
+    // public AuthenticationManager authenticationManager(HttpSecurity http,
+    // PasswordEncoder passwordEncoder,
+    // UserDetailsService userDetailsService) throws Exception {
+    // AuthenticationManagerBuilder authenticationManagerBuilder = http
+    // .getSharedObject(AuthenticationManagerBuilder.class);
+    // authenticationManagerBuilder
+    // .userDetailsService(userDetailsService)
+    // .passwordEncoder(passwordEncoder);
+    // return authenticationManagerBuilder.build();
+    // }
+    // code này khi sử dụng, khi chúng ta login mà sai mật khẩu thì nó sẽ load mãi
+
     @Bean
     public SpringSessionRememberMeServices rememberMeServices() {
         SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
@@ -64,33 +79,37 @@ public class SecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // v6. lamda
         http
+                // Cấu hình Kiểm soát Truy cập:
+
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
                                 DispatcherType.INCLUDE)
                         .permitAll()
 
                         .requestMatchers("/", "/login", "/product/**",
-                                "/client/**", "/css/**", "/js/**", "/images/**")
+                                "/client/**", "/css/**", "/js/**", "/images/**", "/register")
                         .permitAll()
 
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
                         .anyRequest().authenticated())
-
+                // Quản lý Phiên:
                 .sessionManagement((sessionManagement) -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                         .invalidSessionUrl("/logout?expired")
                         .maximumSessions(1)
                         .maxSessionsPreventsLogin(false))
-
+                // Đăng xuất:
                 .logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
-
+                // Nhớ Tài khoản
                 .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
+                // Đăng nhập:
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
                         .successHandler(customSuccessHandler())
                         .permitAll())
+                // Xử lý Ngoại lệ:
                 .exceptionHandling(ex -> ex.accessDeniedPage("/access-deny"));
 
         return http.build();

@@ -20,7 +20,6 @@ import com.myphoneshop.myphoneshop.domain.User;
 import com.myphoneshop.myphoneshop.service.UploadService;
 import com.myphoneshop.myphoneshop.service.UserService;
 
-
 import jakarta.validation.Valid;
 
 @Controller
