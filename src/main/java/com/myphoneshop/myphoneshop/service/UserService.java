@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.myphoneshop.myphoneshop.domain.Role;
 import com.myphoneshop.myphoneshop.domain.User;
 import com.myphoneshop.myphoneshop.domain.dto.registerDTO;
+import com.myphoneshop.myphoneshop.repository.OrderDetailRepository;
+import com.myphoneshop.myphoneshop.repository.OrderRepository;
 import com.myphoneshop.myphoneshop.repository.RoleRepository;
 import com.myphoneshop.myphoneshop.repository.UserRepository;
 
