@@ -129,9 +129,9 @@ public class ItemController {
 
         this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
 
-        return "redirect: client/cart/thanks";
+        return "redirect:/thanks";
     }
-
+    
     @GetMapping("/thanks")
     public String getThankYouPage() {
         return "client/cart/thanks";
