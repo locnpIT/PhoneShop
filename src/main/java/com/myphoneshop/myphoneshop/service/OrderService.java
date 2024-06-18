@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myphoneshop.myphoneshop.domain.Order;
 import com.myphoneshop.myphoneshop.domain.OrderDetail;
+import com.myphoneshop.myphoneshop.domain.User;
 import com.myphoneshop.myphoneshop.repository.OrderDetailRepository;
 import com.myphoneshop.myphoneshop.repository.OrderRepository;
 import java.util.List;
@@ -27,6 +28,10 @@ public class OrderService {
 
     public Optional<Order> findByIdOrder(long id) {
         return this.orderRepository.findById(id);
+    }
+
+    public List<Order> fetchOrderByUser(User user) {
+        return this.orderRepository.findByUser(user);
     }
 
     @Transactional

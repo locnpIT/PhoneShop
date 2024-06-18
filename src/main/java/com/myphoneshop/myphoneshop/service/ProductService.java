@@ -56,7 +56,7 @@ public class ProductService {
         return this.productRepository.save(product);
     }
 
-    public void handleAddProductToCart(String email, long productId, HttpSession session) {
+    public void handleAddProductToCart(String email, long productId, HttpSession session, long quantity) {
 
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
@@ -78,7 +78,7 @@ public class ProductService {
             Optional<Product> productOptional = this.productRepository.findById(productId);
             if (productOptional.isPresent()) {
                 Product realProduct = productOptional.get();
-                // check sản phẩm đã được thêm vào giỏ hàng hay chưa
+                // check sản phẩm đã từng được thêm vào giỏ hàng trước đây chưa ?
                 CartDetail oldDetail = this.cartDetailRepository.findByCartAndProduct(cart, realProduct);
                 //
                 if (oldDetail == null) {
@@ -86,7 +86,7 @@ public class ProductService {
                     cd.setCart(cart);
                     cd.setProduct(realProduct);
                     cd.setPrice(realProduct.getPrice());
-                    cd.setQuantity(1);
+                    cd.setQuantity(quantity);
                     this.cartDetailRepository.save(cd);
 
                     // update Cart(sum)
@@ -96,7 +96,7 @@ public class ProductService {
                     session.setAttribute("sum", s);
 
                 } else {
-                    oldDetail.setQuantity(oldDetail.getQuantity() + 1);
+                    oldDetail.setQuantity(oldDetail.getQuantity() + quantity);
                     this.cartDetailRepository.save(oldDetail);
                 }
 
@@ -164,7 +164,7 @@ public class ProductService {
 
                 double sum = 0;
                 for (CartDetail cd : cartDetails) {
-                    sum += cd.getPrice();
+                    sum += cd.getPrice() * cd.getQuantity();
                 }
                 order.setTotalPrice(sum);
                 order = this.orderRepository.save(order);
