@@ -15,7 +15,7 @@
                     User
                 </a>
 
-                <a class="nav-link" href="/admin/product?page=1">
+                <a class="nav-link" href="/admin/product">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-box"></i></div>
                     Product
                 </a>

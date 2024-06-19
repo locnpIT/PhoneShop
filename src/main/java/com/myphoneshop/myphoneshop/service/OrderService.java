@@ -1,5 +1,7 @@
 package com.myphoneshop.myphoneshop.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +24,8 @@ public class OrderService {
         this.orderDetailRepository = orderDetailRepository;
     }
 
-    public List<Order> getListOrders() {
-        return this.orderRepository.findAll();
+    public Page<Order> getListOrders(Pageable pageable) {
+        return this.orderRepository.findAll(pageable);
     }
 
     public Optional<Order> findByIdOrder(long id) {
