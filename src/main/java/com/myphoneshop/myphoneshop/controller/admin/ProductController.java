@@ -3,6 +3,9 @@ package com.myphoneshop.myphoneshop.controller.admin;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,9 +36,15 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product")
-    public String getProduct(Model model) {
-        List<Product> prs = this.productService.getAllProducts();
-        model.addAttribute("products", prs);
+    public String getProduct(Model model, @RequestParam("page") int page) {
+        Pageable pageable = PageRequest.of(page - 1, 2);
+        Page<Product> prs = this.productService.getAllProducts(pageable);
+        List<Product> listProducts = prs.getContent();
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", prs.getTotalPages());
+
+        model.addAttribute("products", listProducts);
         return "admin/product/show";
     }
 
