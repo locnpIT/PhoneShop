@@ -35,7 +35,9 @@ public class ItemController {
     }
 
     @GetMapping("/products")
-    public String getProductPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+    public String getProductPage(Model model,
+            @RequestParam("page") Optional<String> pageOptional,
+            @RequestParam("name") Optional<String> nameOptional) {
         int page = 1;
         try {
             page = Integer.parseInt(pageOptional.get());
@@ -44,7 +46,9 @@ public class ItemController {
         }
 
         Pageable pageable = PageRequest.of(page - 1, 6);
-        Page prs = this.productService.getAllProducts(pageable);
+
+        String name = nameOptional.isPresent() ? nameOptional.get() : "";
+        Page prs = this.productService.getAllProductsWithSpec(pageable, name);
         List<Product> products = prs.getContent();
 
         model.addAttribute("totalPages", prs.getTotalPages());

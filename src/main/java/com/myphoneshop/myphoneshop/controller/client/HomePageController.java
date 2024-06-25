@@ -1,6 +1,7 @@
 package com.myphoneshop.myphoneshop.controller.client;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +26,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomePageController {
@@ -46,7 +48,8 @@ public class HomePageController {
     }
 
     @GetMapping("/")
-    public String getHomePage(Model model, HttpServletRequest request) {
+    public String getHomePage(Model model, HttpServletRequest request
+        ) {
         // List<Product> products = this.productService.getAllProducts();
         Pageable pageable = PageRequest.of(0, 10);
         Page<Product> prs = this.productService.getAllProducts(pageable);

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.myphoneshop.myphoneshop.domain.Cart;
@@ -12,12 +13,14 @@ import com.myphoneshop.myphoneshop.domain.CartDetail;
 import com.myphoneshop.myphoneshop.domain.Order;
 import com.myphoneshop.myphoneshop.domain.OrderDetail;
 import com.myphoneshop.myphoneshop.domain.Product;
+import com.myphoneshop.myphoneshop.domain.Product_;
 import com.myphoneshop.myphoneshop.domain.User;
 import com.myphoneshop.myphoneshop.repository.CartDetailRepository;
 import com.myphoneshop.myphoneshop.repository.CartRepository;
 import com.myphoneshop.myphoneshop.repository.OrderDetailRepository;
 import com.myphoneshop.myphoneshop.repository.OrderRepository;
 import com.myphoneshop.myphoneshop.repository.ProductRepository;
+import com.myphoneshop.myphoneshop.service.specification.ProductSpecs;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -42,8 +45,17 @@ public class ProductService {
         this.orderRepository = orderRepository;
     }
 
+    private Specification<Product> nameLike(String name) {
+        // like ở đây là điều kiện trong database, dấu % là tìm gần đúng
+        return (root, query, builder) -> builder.like(root.get(Product_.NAME), "%" + name + "%");
+    }
+
     public Page<Product> getAllProducts(Pageable pageable) {
         return this.productRepository.findAll(pageable);
+    }
+
+    public Page<Product> getAllProductsWithSpec(Pageable pageable, String name) {
+        return this.productRepository.findAll(ProductSpecs.nameLike(name), pageable);
     }
 
     public Optional<Product> getProductById(long id) {
