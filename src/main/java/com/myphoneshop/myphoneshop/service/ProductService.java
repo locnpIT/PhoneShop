@@ -58,6 +58,89 @@ public class ProductService {
         return this.productRepository.findAll(ProductSpecs.nameLike(name), pageable);
     }
 
+    // case 1
+    // public Page<Product> getAllProductsWithSpec(Pageable page, double min){
+    // return this.productRepository.findAll(ProductSpecs.minPrice(min), page);
+    // }
+
+    // case 2
+    // public Page<Product> getAllProductsWithSpec(Pageable page, double max) {
+    // return this.productRepository.findAll(ProductSpecs.maxPrice(max), page);
+    // }
+
+    // case 3
+    // public Page<Product> getAllProductsWithSpec(Pageable page, String factory) {
+    // return this.productRepository.findAll(ProductSpecs.matchFactoiry(factory),
+    // page);
+    // }
+
+    // case 4
+    // public Page<Product> getAllProductsWithSpec(Pageable page, List<String>
+    // factory) {
+    // return this.productRepository.findAll(ProductSpecs.matchListFactory(factory),
+    // page);
+    // }
+
+    // case 5
+    // public Page<Product> getAllProductsWithSpec(Pageable page, String price) {
+    // // eg: 10-toi-15-trieu
+    // if (price.equals("10-toi-15-trieu")) {
+    // double min = 10000000;
+    // double max = 15000000;
+    // return this.productRepository.findAll(ProductSpecs.matchPrice(min, max),
+    // page);
+    // } else if (price.equals("15-toi-30-trieu")) {
+    // double min = 15000000;
+    // double max = 30000000;
+    // return this.productRepository.findAll(ProductSpecs.matchPrice(min, max),
+    // page);
+
+    // } else {
+    // return this.productRepository.findAll(page);
+    // }
+
+    // }
+
+    // case 6
+    // public Page<Product> getAllProductsWithSpec(Pageable page, List<String>
+    // price) {
+    // Specification<Product> combinedSpec = (root, query, criteriaBuilder) ->
+    // criteriaBuilder.disjunction();
+    // int count = 0;
+
+    // for (String p : price) {
+    // double min = 0;
+    // double max = 0;
+
+    // switch (p) {
+    // case "10-toi-15-trieu":
+    // min = 10000000;
+    // max = 15000000;
+    // count++;
+    // break;
+    // case "15-toi-20-trieu":
+    // min = 15000000;
+    // max = 20000000;
+    // count++;
+    // break;
+    // case "20-toi-30-trieu":
+    // min = 20000000;
+    // max = 30000000;
+    // count++;
+    // break;
+    // }
+    // if (min != 0 && max != 0) {
+    // Specification<Product> rangeSpec = ProductSpecs.matchMultiplePrice(min, max);
+    // combinedSpec = combinedSpec.or(rangeSpec);
+    // }
+    // }
+    // if (count == 0) {
+    // return this.productRepository.findAll(page);
+    // }
+    // return this.productRepository.findAll(combinedSpec, page);
+
+    // }
+
     public Optional<Product> getProductById(long id) {
         return this.productRepository.findById(id);
     }
